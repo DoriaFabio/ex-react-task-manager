@@ -11,7 +11,7 @@ export default function TaskList() {
     <div className='my-5'>
       <h1 className="font-bold text-2xl">Questa è la lista dei task</h1>
       <table className="border my-2">
-        <thead className="bg-blue-900 text-white">
+        <thead className="bg-blue-900 text-white hover:bg-blue-800 transition duration-500 ease-in-out">
           <tr>
             <th className="border py-1 border-black">Nome</th>
             <th className="border py-1 border-black">Stato</th>
