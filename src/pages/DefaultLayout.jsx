@@ -5,7 +5,7 @@ export default function DefaultLayout() {
     return (
         <>
             <Header />
-            <main className="mx-auto">
+            <main className="mx-10">
                 <Outlet />
             </main>
         </>
