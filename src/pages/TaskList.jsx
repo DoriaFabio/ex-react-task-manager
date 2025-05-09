@@ -2,13 +2,12 @@ import { useContext } from "react"
 import { GlobalContext } from "../context/globalContext"
 import Taskrow from "../components/Taskrow";
 
-
-export default function TaskList() {
+export default function TaskList() { 
   const { tasks } = useContext(GlobalContext);
-  console.log("Tasks:", tasks);
-
+  console.log("Tasks:", tasks); 
+  
   return (
-    <div className='my-5'>
+    <div className='my-5 flex flex-col items-center'>
       <h1 className="font-bold text-2xl">Questa è la lista dei task</h1>
       <table className="border my-2">
         <thead className="bg-blue-900 text-white hover:bg-blue-800 transition duration-500 ease-in-out">
