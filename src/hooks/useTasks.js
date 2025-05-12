@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 const { VITE_API_URL } = import.meta.env;
 
 export default function useTasks() {
@@ -26,13 +26,20 @@ export default function useTasks() {
         const res = await fetch(`${VITE_API_URL}/tasks/${taskId}`, {
             method: "DELETE",
         });
-        const { success, message } = await res.json(); // Parse the response as JSON
-        if (!success) throw new Error(message); // If the request was not successful, throw an error with the message from the response
+        const { success, message } = await res.json();
+        if (!success) throw new Error(message);
         setTasks(prev => prev.filter(t => t.id !== taskId))
     }
 
-    const UpdateTask = () => {
-
+    const UpdateTask = async ModTask => {
+        const res = await fetch(`${VITE_API_URL}/tasks/${ModTask.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(ModTask)
+        });
+        const { success, message, task } = await res.json();
+        if (!success) throw new Error(message);
+        setTasks(prev => prev.map(t => (t.id === task.id ? task : t)));
     }
 
     return { tasks, AddTask, RemoveTask, UpdateTask }
