@@ -1,31 +1,64 @@
-import { createPortal } from "react-dom"
+import { useState, useRef } from "react"
+import Modal from "./modal";
 
 export default function ModalUpdate({
-    show = false,
-    onClose = () => { },
-    task = {},
-    onSave = () => { }
+    show,
+    onClose,
+    task,
+    onSave
 }) {
-    return show && createPortal(
-        <div className="fixed top-0 left-0 w-full h-full bg-[#00000093] flex justify-center items-center shadow-xl/20">
-            <div className="bg-white p-[20px] rounded-xl">
-                <h2 className="font-bold text-center">Modifica task</h2>
-                <form onSubmit={onSave}>
-                    <div className="flex justify-around">
-                        <button onClick={onSave} className="p-2 bg-green-400 rounded-xl cursor-pointer m-3 hover:inset-ring-4 hover:inset-ring-emerald-600 transition duration-500 ease-in-out">Salva</button>
-                        <button onClick={onClose} className="p-2 bg-red-400 rounded-xl cursor-pointer m-3 hover:inset-ring-4 hover:inset-ring-red-600 transition duration-500 ease-in-out">Annulla</button>
-                    </div>
-                </form>
 
-            </div>
-        </div>,
-        document.body
+    const [editedTask, setEditedTask] = useState(task);
+    const { title, description, state } = editedTask;
+    const editFormRef = useRef();
+
+    const changeEditedTask = (key, e) => {
+        setEditedTask(prev => ({ ...prev, [key]: e.target.value }))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSave(editedTask);
+    }
+
+    return (
+        <Modal
+            title="Modifica task"
+            content={
+                <form ref={editFormRef} onSubmit={handleSubmit}>
+                    <section>
+                        <h2 className="text-center">Nome task</h2>
+                        <input type="text"
+                            value={title}
+                            onChange={(e) => changeEditedTask("title", e)}
+                            placeholder="Scrivi..."
+                            className="p-2 border m-1" />
+                    </section>
+                    <section>
+                        <h2 className="text-center">Descrizione task</h2>
+                        <textarea
+                            value={description}
+                            onChange={(e) => changeEditedTask("description", e)}
+                            placeholder="Scrivi..."
+                            className="p-2 border m-1 h-[140px]">
+                        </textarea>
+                    </section>
+                    <section>
+                        <h2 className='text-center'>Stato</h2>
+                        <select
+                            value={state}
+                            onChange={(e) => changeEditedTask("state", e)}
+                            className='p-2 border m-1'>
+                            <option value="To do">To do</option>
+                            <option value="Doing">Doing</option>
+                            <option value="Done">Done</option>
+                        </select>
+                    </section>
+                </form>
+            }
+            show={show}
+            onClose={onClose}
+            onConfirm={() => editFormRef.current.requestSubmit()}
+        />
     )
 }
-
-// Utilizzare il componente Modal per creare la modale di modifica,
-// passandogli i seguenti valori:
-//  - title: "Modifica Task".
-//  - content: un form contenente i campi del task da modificare.
-//  - confirmText: "Salva".
-//  - onConfirm: deve attivare il submit del form.
