@@ -49,7 +49,7 @@ export default function AddTask() {
   return (
     <div className='flex flex-col items-center my-5'>
       <h1 className="font-bold text-2xl mb-5">Aggiungi una task</h1>
-      <form onSubmit={submit} className='grid border border-black p-5 w-min'>
+      <form onSubmit={submit} className='grid border border-black p-5 w-min shadow-xl'>
         {/* Nome task */}
         <section>
           <h2 className="text-center">Nome task</h2>

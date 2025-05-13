@@ -25,7 +25,7 @@ export default function TaskDetails() {
     try { // Provo a eseguire la funzione AddTask
       await RemoveTask(SingleTask.id); // Passo l'oggetto newTask alla funzione AddTask
       alert("Task eliminata con successo");
-      navigate("/tasklist");
+      navigate("/");
     } catch (err) {
       console.error(err);
       alert(err.message); // Mostro un alert con il messaggio di errore
@@ -53,12 +53,12 @@ export default function TaskDetails() {
       <div className='flex gap-4 mt-2'>
         <button className='group rounded-xl flex justify-center items-center gap-2 max-h-[100px]  
       cursor-pointer hover:border-red-400 transition-all duration-300 ease-in-out' onClick={() => setShow(true)}>
-          <div className="relative p-2 flex flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-red-800 bg-red-700 hover:bg-red-800">
+          <div className="relative p-2 flex flex-col items-center justify-center overflow-hidden rounded-xl border-2 shadow-lg border-red-800 bg-red-700 hover:bg-red-800">
             <TrashIcon />
           </div>
         </button>
         <button className='border p-2 rounded-md bg-blue-700 hover:bg-blue-500 
-          text-white border-black transition duration-500 ease-in-out' onClick={() => setShowEdit(true)}>Modifica Task</button>
+          text-white border-black transition duration-500 ease-in-out shadow-lg' onClick={() => setShowEdit(true)}>Modifica Task</button>
       </div>
       <Modal
         title="Elimina Task"

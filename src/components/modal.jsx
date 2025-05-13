@@ -13,8 +13,8 @@ export default function modal({
                 <h2 className="font-bold text-center">{title}</h2>
                 <div>{content}</div>
                 <div className="flex justify-around">
-                    <button onClick={onConfirm} className="p-2 bg-green-400 rounded-xl cursor-pointer m-3 hover:inset-ring-4 hover:inset-ring-emerald-600 transition duration-500 ease-in-out">Conferma</button>
-                    <button onClick={onClose} className="p-2 bg-red-400 rounded-xl cursor-pointer m-3 hover:inset-ring-4 hover:inset-ring-red-600 transition duration-500 ease-in-out">Annulla</button>
+                    <button onClick={onConfirm} className="p-2 bg-green-400 rounded-xl cursor-pointer m-3 shadow-lg hover:inset-ring-4 hover:inset-ring-emerald-600">Conferma</button>
+                    <button onClick={onClose} className="p-2 bg-red-400 rounded-xl cursor-pointer m-3 shadow-lg hover:inset-ring-4 hover:inset-ring-red-600 ">Annulla</button>
                 </div>
             </div>
         </div>,
