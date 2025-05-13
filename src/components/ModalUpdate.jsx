@@ -9,7 +9,7 @@ export default function ModalUpdate({
 }) {
 
     const [editedTask, setEditedTask] = useState(task);
-    const { title, description, state } = editedTask;
+    const { title, description, status } = editedTask;
     const editFormRef = useRef();
 
     const changeEditedTask = (key, e) => {
@@ -46,8 +46,8 @@ export default function ModalUpdate({
                     <section>
                         <h2 className='text-center'>Stato</h2>
                         <select
-                            value={state}
-                            onChange={(e) => changeEditedTask("state", e)}
+                            value={status}
+                            onChange={(e) => changeEditedTask("status", e)}
                             className='p-2 border m-1'>
                             <option value="To do">To do</option>
                             <option value="Doing">Doing</option>
